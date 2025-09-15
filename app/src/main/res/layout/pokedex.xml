@@ -7,13 +7,292 @@
     android:layout_height="match_parent"
     tools:context=".PokedexActivity">
 
+
     <TextView
+        android:id="@+id/headerTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/poketracker"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/numberTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/national_number"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerTV" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/name"
+        app:layout_constraintStart_toStartOf="@+id/numberTV"
+        app:layout_constraintTop_toBottomOf="@+id/numberTV" />
+
+    <TextView
+        android:id="@+id/speciesTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/species"
+        app:layout_constraintStart_toStartOf="@+id/nameTV"
+        app:layout_constraintTop_toBottomOf="@+id/nameTV" />
+
+    <TextView
+        android:id="@+id/genderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/gender"
+        app:layout_constraintStart_toStartOf="@+id/speciesTV"
+        app:layout_constraintTop_toBottomOf="@+id/speciesTV" />
+
+    <TextView
+        android:id="@+id/heightTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/height"
+        app:layout_constraintStart_toStartOf="@+id/genderTV"
+        app:layout_constraintTop_toBottomOf="@+id/genderTV" />
+
+    <TextView
+        android:id="@+id/weightTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/weight"
+        app:layout_constraintStart_toStartOf="@+id/heightTV"
+        app:layout_constraintTop_toBottomOf="@+id/heightTV" />
+
+    <TextView
+        android:id="@+id/levelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/level"
+        app:layout_constraintStart_toStartOf="@+id/weightTV"
+        app:layout_constraintTop_toBottomOf="@+id/weightTV" />
+
+    <TextView
+        android:id="@+id/subtitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/register_new_catch"
+        app:layout_constraintStart_toStartOf="@+id/headerTV"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/statsTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/base_stats"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/levelTV"
+        app:layout_constraintTop_toBottomOf="@+id/levelTV" />
+
+    <TextView
+        android:id="@+id/hpTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/hp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statsTitleTV" />
+
+    <TextView
+        android:id="@+id/attackTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/attack"
+        app:layout_constraintStart_toStartOf="@+id/hpTV"
+        app:layout_constraintTop_toBottomOf="@+id/hpTV" />
+
+    <TextView
+        android:id="@+id/defenseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/defense"
+        app:layout_constraintStart_toStartOf="@+id/attackTV"
+        app:layout_constraintTop_toBottomOf="@+id/attackTV" />
+
+    <Button
+        android:id="@+id/resetB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/saveB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="@+id/resetB"
+        app:layout_constraintStart_toEndOf="@+id/resetB" />
+
+    <EditText
+        android:id="@+id/numberET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="88dp"
+        android:ems="10"
+        android:hint="@string/numberDefault"
+        android:inputType="number"
+
+        android:maxLength="4"
+        app:layout_constraintStart_toEndOf="@+id/numberTV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/nameTV"
+        app:layout_constraintTop_toBottomOf="@+id/numberET" />
+
+    <EditText
+        android:id="@+id/speciesET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@+id/speciesTV"
+        app:layout_constraintTop_toBottomOf="@+id/nameET" />
+
+    <RadioGroup
+        android:id="@+id/genderG"
+        android:layout_width="242dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/genderTV"
+        app:layout_constraintTop_toBottomOf="@+id/speciesET">
+
+        <RadioButton
+            android:id="@+id/femaleB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female" />
+
+        <RadioButton
+            android:id="@+id/maleB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/male" />
+
+        <RadioButton
+            android:id="@+id/unknownB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/unk" />
+    </RadioGroup>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+
+
+        android:id="@+id/heightET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/heightTV"
+        app:layout_constraintTop_toBottomOf="@+id/genderG"
+        app:suffixText=" m" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weightET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        app:suffixText=" Kg"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/weightTV"
+        app:layout_constraintTop_toBottomOf="@+id/heightET" />
+
+
+    <Spinner
+        android:id="@+id/levelS"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/levelTV"
+        app:layout_constraintTop_toBottomOf="@+id/weightET" />
+
+    <EditText
+        android:id="@+id/hpET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/hpTV"
+        app:layout_constraintTop_toBottomOf="@+id/statsTitleTV" />
+
+    <EditText
+        android:id="@+id/attackET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/attackTV"
+        app:layout_constraintTop_toBottomOf="@+id/hpET" />
+
+    <EditText
+        android:id="@+id/defenseET"
+        android:layout_width="203dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/defenseTV"
+        app:layout_constraintTop_toBottomOf="@+id/attackET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
