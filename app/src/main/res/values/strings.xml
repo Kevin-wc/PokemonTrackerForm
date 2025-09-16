@@ -20,4 +20,7 @@
     <string name="unk">Unk</string>
     <string name="numberDefault">896</string>
     <string name="m">m</string>
+    <string name="_0">0</string>
+    <string name="nameDefault">Glastrier</string>
+    <string name="speciesDefault">Wild Horse Pokemon</string>
 </resources>

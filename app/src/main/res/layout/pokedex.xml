@@ -176,8 +176,9 @@
         android:layout_width="203dp"
         android:layout_height="43dp"
         android:layout_marginStart="96dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/nameDefault"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/nameTV"
         app:layout_constraintTop_toBottomOf="@+id/numberET" />
@@ -187,8 +188,9 @@
         android:layout_width="203dp"
         android:layout_height="43dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/speciesDefault"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/speciesTV"
         app:layout_constraintTop_toBottomOf="@+id/nameET" />
@@ -221,46 +223,61 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@string/unk" />
+            android:text="@string/unk"
+            android:checked="true"/>
     </RadioGroup>
 
 
     <com.google.android.material.textfield.TextInputLayout
-
-
-        android:id="@+id/heightET"
+        android:id="@+id/heightTIL"
         android:layout_width="203dp"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toEndOf="@+id/heightTV"
         app:layout_constraintTop_toBottomOf="@+id/genderG"
-        app:suffixText=" m" />
+        app:placeholderText="2.2"
+        app:suffixText=" m">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/heightTIL_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textSize="11sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/weightET"
+        android:id="@+id/weightTIL"
         android:layout_width="203dp"
-        android:layout_height="43dp"
-        app:suffixText=" Kg"
+        android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/weightTV"
-        app:layout_constraintTop_toBottomOf="@+id/heightET" />
+        app:layout_constraintTop_toBottomOf="@+id/heightTIL"
+        app:placeholderText="800.0 Kg"
+        app:suffixText=" Kg">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weightTIL_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textSize="11sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner
         android:id="@+id/levelS"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/levelTV"
-        app:layout_constraintTop_toBottomOf="@+id/weightET" />
+        app:layout_constraintTop_toBottomOf="@+id/weightTIL" />
 
     <EditText
         android:id="@+id/hpET"
@@ -269,6 +286,7 @@
         android:layout_marginStart="96dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="@string/_0"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/hpTV"
         app:layout_constraintTop_toBottomOf="@+id/statsTitleTV" />
@@ -282,7 +300,8 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/attackTV"
-        app:layout_constraintTop_toBottomOf="@+id/hpET" />
+        app:layout_constraintTop_toBottomOf="@+id/hpET"
+        android:hint="@string/_0"/>
 
     <EditText
         android:id="@+id/defenseET"
@@ -293,6 +312,7 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/defenseTV"
-        app:layout_constraintTop_toBottomOf="@+id/attackET" />
+        app:layout_constraintTop_toBottomOf="@+id/attackET"
+        android:hint="@string/_0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
