@@ -21,10 +21,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
+import java.util.*;
 
 public class PokedexActivity extends AppCompatActivity {
 
@@ -32,19 +32,27 @@ public class PokedexActivity extends AppCompatActivity {
     EditText numberET;
     TextView nameTV;
     EditText nameET;
+    TextView speciesTV;
     EditText speciesET;
+    TextView genderTV;
     RadioButton femaleB;
     RadioButton maleB;
     RadioButton unknownB;
     TextInputLayout heightLayout;
+    TextView heightTV;
     TextInputEditText heightTIL;
     TextInputLayout weightLayout;
+    TextView weightTV;
 
     TextInputEditText weightTIL;
+    TextView levelsTV;
     Spinner levelS;
     String selectLevel = "";
+    TextView hpTV;
     EditText hpET;
+    TextView attackTV;
     EditText attackET;
+    TextView defenseTV;
     EditText defenseET;
     Button resetB;
     Button saveB;
@@ -57,7 +65,7 @@ public class PokedexActivity extends AppCompatActivity {
                 reset();
             }
             if (v.getId() == R.id.saveB){
-                sumbit();
+                save();
             }
         }
     };
@@ -88,7 +96,10 @@ public class PokedexActivity extends AppCompatActivity {
         defenseET.getText().clear();
     }
 
-    public void sumbit(){
+    public void save(){
+        if(checkValues()){
+            Toast.makeText(this, "Saved to your Pokedex!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -96,7 +107,7 @@ public class PokedexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.pokedex);
+        setContentView(R.layout.constraint);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -120,6 +131,17 @@ public class PokedexActivity extends AppCompatActivity {
         resetB = findViewById(R.id.resetB);
         saveB = findViewById(R.id.saveB);
         genderRG = findViewById(R.id.genderG);
+        numberTV = findViewById(R.id.numberTV);
+        nameTV = findViewById(R.id.nameTV);
+        genderTV = findViewById(R.id.genderTV);
+        levelsTV = findViewById(R.id.levelTV);
+        hpTV      = findViewById(R.id.hpTV);
+        attackTV  = findViewById(R.id.attackTV);
+        defenseTV = findViewById(R.id.defenseTV);
+        heightTV  = findViewById(R.id.heightTV);
+        weightTV  = findViewById(R.id.weightTV);
+        speciesTV = findViewById(R.id.speciesTV);
+
 
         resetB.setOnClickListener(buttonListener);
         saveB.setOnClickListener(buttonListener);
@@ -135,5 +157,181 @@ public class PokedexActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private boolean checkValues() {
+        boolean valid = true;
+
+
+        //check if field is empty or not
+        String number = numberET.getText().toString().trim();
+        if (number.isEmpty()) {
+            numberET.setError("Required");
+            numberTV.setTextColor(getColor(R.color.red));
+            valid = false;
+        } else {
+            //check if it fits parameters. (e.g numbers 0-1010).
+            try {
+                int value = Integer.parseInt(number);
+                if (value < 0 || value > 1010){  //shouldn't have to worry about < 0 bc of widget but just in case
+                    numberET.setError("0-1010 only");
+                    numberTV.setTextColor(getColor(R.color.red));
+                    valid = false;
+                } else {
+                    numberTV.setTextColor(getColor(R.color.black));
+                }
+            } catch (NumberFormatException e){
+                numberET.setError("Whole number");
+                numberTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            }
+        }
+
+
+            String name = nameET.getText().toString().trim();
+            if (name.isEmpty()) {
+                nameET.setError("Required");
+                nameTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else if (!name.matches("[A-Za-z]{3,12}")) {
+                nameET.setError("3–12 letters");
+                nameTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else {
+                nameTV.setTextColor(getColor(R.color.black));
+            }
+
+            name = speciesET.getText().toString().trim();
+            if (name.isEmpty()) {
+                speciesET.setError("Required");
+                speciesTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            }  else {
+                speciesTV.setTextColor(getColor(R.color.black));
+            }
+
+            if (!maleB.isChecked() && !femaleB.isChecked()) {
+                genderTV.setTextColor(getColor(R.color.red));
+                Toast.makeText(this, "Select Male or Female", Toast.LENGTH_SHORT).show();
+                valid = false;
+            } else {
+                 genderTV.setTextColor(getColor(R.color.black));
+            }
+
+            number = hpET.getText().toString().trim();
+            if (number.isEmpty()) {
+                hpET.setError("Required");
+                hpTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else {
+                try {
+                    int value = Integer.parseInt(number);
+                    if (value < 1 || value > 362) {
+                        hpET.setError("1–362");
+                        hpTV.setTextColor(getColor(R.color.red));
+                        valid = false;
+                    } else {
+                        hpTV.setTextColor(getColor(R.color.black));
+                    }
+                } catch (NumberFormatException e) {
+                    hpET.setError("Whole number");
+                    hpTV.setTextColor(getColor(R.color.red));
+                    valid = false;
+                }
+            }
+
+            number = attackET.getText().toString().trim();
+            if (number.isEmpty()) {
+                attackET.setError("Required");
+                attackTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else {
+                try {
+                    int value = Integer.parseInt(number);
+                    if (value < 0 || value > 526) {
+                        attackET.setError("0–526");
+                        attackTV.setTextColor(getColor(R.color.red));
+                        valid = false;
+                    } else {
+                        attackTV.setTextColor(getColor(R.color.black));
+                    }
+                } catch (NumberFormatException e) {
+                    attackET.setError("Whole number");
+                    attackTV.setTextColor(getColor(R.color.red));
+                    valid = false;
+                }
+            }
+
+            number = defenseET.getText().toString().trim();
+            if (number.isEmpty()) {
+                defenseET.setError("Required");
+                defenseTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else {
+                try {
+                    int value = Integer.parseInt(number);
+                    if (value < 10 || value > 614) {
+                        defenseET.setError("10–614");
+                        defenseTV.setTextColor(getColor(R.color.red));
+                        valid = false;
+                    } else {
+                        defenseTV.setTextColor(getColor(R.color.black));
+                    }
+                } catch (NumberFormatException e) {
+                    defenseET.setError("Whole number");
+                    defenseTV.setTextColor(getColor(R.color.red));
+                    valid = false;
+                }
+            }
+
+            number = heightTIL.getText().toString().trim();
+            if (number.isEmpty()) {
+                heightTIL.setError("Required");
+                heightTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else {
+                try {
+                    double value = Double.parseDouble(number);
+                    if (value < 0.2 || value > 169.99) {
+                        heightTIL.setError("0.2–169.99");
+                        heightTV.setTextColor(getColor(R.color.red));
+                        valid = false;
+                    } else {
+                        heightTV.setTextColor(getColor(R.color.black));
+                    }
+                } catch (NumberFormatException e) {
+                    heightTIL.setError("Number");
+                    heightTV.setTextColor(getColor(R.color.red));
+                    valid = false;
+                }
+            }
+
+            number = weightTIL.getText().toString().trim();
+            if (number.isEmpty()) {
+                weightTIL.setError("Required");
+                weightTV.setTextColor(getColor(R.color.red));
+                valid = false;
+            } else {
+                try {
+                    double value = Double.parseDouble(number);
+                    if (value < 0.1 || value > 992.7) {
+                        weightTIL.setError("0.1–992.7");
+                        weightTV.setTextColor(getColor(R.color.red));
+                        valid = false;
+                    } else {
+                        weightTV.setTextColor(getColor(R.color.black));
+                    }
+                } catch (NumberFormatException e) {
+                    weightTIL.setError("Number");
+                    weightTV.setTextColor(getColor(R.color.red));
+                    valid = false;
+                }
+            }
+
+
+        if (!valid){
+            Toast.makeText(this,"Please verify the hightlighted fields", Toast.LENGTH_SHORT).show();
+        }
+        return valid;
     }
 }
