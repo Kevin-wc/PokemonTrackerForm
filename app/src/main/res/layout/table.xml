@@ -15,7 +15,7 @@
         android:padding="16dp"
         android:shrinkColumns="1"
         android:stretchColumns="1"
-        tools:context=".PokedexActivity">
+        tools:context=".model.PokedexActivity">
 
 
         <TableRow>

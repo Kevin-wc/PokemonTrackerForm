@@ -23,4 +23,5 @@
     <string name="_0">0</string>
     <string name="nameDefault">Glastrier</string>
     <string name="speciesDefault">Wild Horse Pokemon</string>
+    <string name="title_activity_pokemon_list">PokemonListActivity</string>
 </resources>

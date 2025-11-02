@@ -1,5 +1,8 @@
-package com.example.pokemontrackerform;
+package com.example.pokemontrackerform.model;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +21,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.pokemontrackerform.PokemonListActivity;
+import com.example.pokemontrackerform.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -57,6 +62,7 @@ public class PokedexActivity extends AppCompatActivity {
     Button resetB;
     Button saveB;
     RadioGroup genderRG;
+    Button dbB;
 
     View.OnClickListener buttonListener = new View.OnClickListener(){
         @Override
@@ -66,6 +72,9 @@ public class PokedexActivity extends AppCompatActivity {
             }
             if (v.getId() == R.id.saveB){
                 save();
+            }
+            if (v.getId() == R.id.dbB){
+                startActivity(new Intent(PokedexActivity.this, PokemonListActivity.class));
             }
         }
     };
@@ -97,8 +106,33 @@ public class PokedexActivity extends AppCompatActivity {
     }
 
     public void save(){
-        if(checkValues()){
-            Toast.makeText(this, "Saved to your Pokedex!", Toast.LENGTH_SHORT).show();
+        if(checkValues()) {
+            ContentValues cv = new ContentValues();
+            cv.put("national_number", Integer.parseInt(numberET.getText().toString()));
+            cv.put("name", nameET.getText().toString());
+            cv.put("species", speciesET.getText().toString());
+            cv.put("height", Double.parseDouble(heightTIL.getText().toString()));
+            cv.put("weight", Double.parseDouble(weightTIL.getText().toString()));
+            cv.put("level", Integer.parseInt(selectLevel));
+            cv.put("hp", Integer.parseInt(hpET.getText().toString()));
+            cv.put("attack", Integer.parseInt(attackET.getText().toString()));
+            cv.put("defense", Integer.parseInt(defenseET.getText().toString()));
+
+            Uri result = getContentResolver().insert(
+                    PokedexContentProvider.CONTENT_URI,
+                    cv
+            );
+
+            if (result == null) {
+
+                Toast.makeText(this,
+                        "Pokémon already exists.",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this,
+                        "Pokémon added to Pokédex!",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -141,10 +175,12 @@ public class PokedexActivity extends AppCompatActivity {
         heightTV  = findViewById(R.id.heightTV);
         weightTV  = findViewById(R.id.weightTV);
         speciesTV = findViewById(R.id.speciesTV);
+        dbB = findViewById(R.id.dbB);
 
 
         resetB.setOnClickListener(buttonListener);
         saveB.setOnClickListener(buttonListener);
+        dbB.setOnClickListener(buttonListener);
 
         LinkedList<Integer> levelsList = new LinkedList<>();
         for (int i = 1; i <= 50; i++){
@@ -158,6 +194,7 @@ public class PokedexActivity extends AppCompatActivity {
 
 
     }
+
 
     private boolean checkValues() {
         boolean valid = true;
