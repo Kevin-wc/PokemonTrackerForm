@@ -14,6 +14,7 @@ public class PokedexContentProvider extends ContentProvider {
     public final static String COLUMN_NUMBER = "national_number";
     public final static String COLUMN_NAME = "name";
     public final static String COLUMN_SPECIES = "species";
+    public final static String COLUMN_GENDER = "gender";
     public final static String COLUMN_HEIGHT = "height";
     public final static String COLUMN_WEIGHT = "weight";
     public final static String COLUMN_LEVEL = "level";
@@ -27,6 +28,7 @@ public class PokedexContentProvider extends ContentProvider {
             COLUMN_NUMBER + " INTEGER UNIQUE, " +
             COLUMN_NAME + " TEXT NOT NULL, " +
             COLUMN_SPECIES + " TEXT, " +
+            COLUMN_GENDER + " TEXT NOT NULL, " +
             COLUMN_HEIGHT + " REAL, " +
             COLUMN_WEIGHT + " REAL, " +
             COLUMN_LEVEL + " INTEGER, " +

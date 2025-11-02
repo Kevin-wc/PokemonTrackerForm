@@ -37,13 +37,27 @@ public class PokemonListActivity extends AppCompatActivity {
         String[] columns = {
                 "national_number",
                 "name",
-                "species"
+                "species",
+                "gender",
+                "height",
+                "weight",
+                "level",
+                "hp",
+                "attack",
+                "defense"
         };
 
         int[] views = {
                 R.id.rowNumber,
                 R.id.rowName,
-                R.id.rowSpecies
+                R.id.rowSpecies,
+                R.id.rowGender,
+                R.id.rowHeight,
+                R.id.rowWeight,
+                R.id.rowLevel,
+                R.id.rowHp,
+                R.id.rowAttack,
+                R.id.rowDefense
         };
         adapter = new SimpleCursorAdapter(this, R.layout.custom_row, cursor, columns, views, 0);
 

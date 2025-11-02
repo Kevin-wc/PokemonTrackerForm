@@ -105,12 +105,19 @@ public class PokedexActivity extends AppCompatActivity {
         defenseET.getText().clear();
     }
 
+    private String getSelectedGender() {
+        if (maleB.isChecked()) return "Male";
+        if (femaleB.isChecked()) return "Female";
+        return "Unknown"; // fallback
+    }
+
     public void save(){
         if(checkValues()) {
             ContentValues cv = new ContentValues();
             cv.put("national_number", Integer.parseInt(numberET.getText().toString()));
             cv.put("name", nameET.getText().toString());
             cv.put("species", speciesET.getText().toString());
+            cv.put("gender", getSelectedGender());
             cv.put("height", Double.parseDouble(heightTIL.getText().toString()));
             cv.put("weight", Double.parseDouble(weightTIL.getText().toString()));
             cv.put("level", Integer.parseInt(selectLevel));
